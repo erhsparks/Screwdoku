@@ -25,12 +25,12 @@ class Board
 
   def [](pos)
     x, y = pos
-    grid[x][y]
+    @grid[x][y]
   end
 
   def []=(pos, value)
     x, y = pos
-    tile = grid[x][y]
+    tile = @grid[x][y]
     tile.value = value
   end
 
@@ -40,17 +40,14 @@ class Board
 
   def render
     puts "  #{(0..8).to_a.join(" ")}"
-    grid.each_with_index do |row, i|
+    @grid.each_with_index do |row, i|
       puts "#{i} #{row.join(" ")}"
     end
   end
 
-
-  def size
-    grid.size
+  def rows
+    @grid
   end
-
-  alias_method :rows, :size
 
   def solved?
     rows.all? { |row| solved_set?(row) } &&
